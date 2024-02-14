@@ -45,7 +45,9 @@ const std::string & Trainer::get_name() const {
 //          pokemon in the trainer's active roster. That pokemon is removed
 //          from the roster and returned.
 Pokemon Trainer::choose_pokemon() {
-  return Pokemon(); // TODO: Replace with your implementation
+    Pokemon ret = pokemon.at(0);
+    pokemon.erase(pokemon.begin());
+  return ret;
 }
 
 // EFFECTS: Chooses a pokemon to face a specific adversary type. Specifically,
@@ -54,7 +56,14 @@ Pokemon Trainer::choose_pokemon() {
 //          pokemon, the first pokemon in the roster is returned. The chosen
 //          pokemon is removed from the roster.
 Pokemon Trainer::choose_pokemon(PokemonType adversary_type) {
-  return Pokemon(); // TODO: Replace with your implementation
+    for (int i = 0; i < pokemon.size(); ++i) {
+        if(pokemon[i].is_effective_against(adversary_type)){
+            Pokemon ret = pokemon.at(i);
+            pokemon.erase(pokemon.begin()+i);
+            return ret;
+        }
+    }
+  return choose_pokemon();
 }
 
 // EFFECTS: Resets the trainers active roster so that it contains all
