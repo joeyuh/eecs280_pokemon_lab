@@ -15,7 +15,6 @@ private:
 
     vector<Trainer *> gym_leaders;
     Trainer *player;
-    vector<Trainer *> defeated;
 
 public:
 
